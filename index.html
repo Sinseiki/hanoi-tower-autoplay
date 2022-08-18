@@ -181,14 +181,14 @@
       <div></div>
     </div>
     <div class="description">
-      <p>Status : Move from pillar No.<span class="from"></span> to pillar No.<span class="to"></span></p>
+      <p>Status : Move from rod No.<span class="from"></span> to rod No.<span class="to"></span></p>
       <p>　</p>
       <ul>
         <li>
-          <p>Hanoi Tower is a game where a player moves circle from the left pillar to the right pillar.</p>
+          <p>Hanoi Tower is a game where a player moves disk from the left rod to the right rod.</p>
         </li>
         <li>
-          <p>Only one circle can be moved on each time. And player can't put a bigger circle on a smaller one.</p>
+          <p>Only one disk can be moved on each time. And player can't put a bigger disk on a smaller one.</p>
         </li>
       </ul>
     </div>
@@ -202,14 +202,14 @@
     let N = 0
 
     while (true) {
-      N = +prompt('What number of circles do you want to see on this autoplay? \n(Maximum 7)')
+      N = +prompt('What number of disks do you want to see on this autoplay? \n(Maximum 7)')
       if (!(1 <= N && N <= 7)) alert("You've got the wrong number~")
       else break
     }
 
-    let pillars = [[], [], []]
+    let rods = [[], [], []]
 
-    for (let i = 1; i <= N; i++) pillars[0].push(i)
+    for (let i = 1; i <= N; i++) rods[0].push(i)
 
     const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -217,14 +217,14 @@
       document.querySelector('span.from').innerText = '' + from
       document.querySelector('span.to').innerText = '' + to
       await delay(500)
-      pillars[to - 1].unshift(pillars[from - 1][0])
-      pillars[from - 1].shift()
-      console.log(JSON.stringify(pillars))
+      rods[to - 1].unshift(rods[from - 1][0])
+      rods[from - 1].shift()
+      console.log(JSON.stringify(rods))
       document.querySelectorAll('.container .col div').forEach(it => it.className = '')
       for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < pillars[i].length; j++) {
-          document.querySelectorAll('.container .col')[i].children[j + 7 - pillars[i].length].className =
-            `r${pillars[i][j]}`
+        for (let j = 0; j < rods[i].length; j++) {
+          document.querySelectorAll('.container .col')[i].children[j + 7 - rods[i].length].className =
+            `r${rods[i][j]}`
         }
       }
       await delay(500)
