@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hanoi Tower Auto Play</title>
   <style>
-    *{margin: 0;padding: 0; box-sizing: border-box;}
-    body{
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       overflow: scroll;
     }
-    .container{
+
+    .container {
       max-width: 1024px;
       width: 100%;
       margin: 150px auto 50px;
       display: flex;
     }
-    .container .col{
+
+    .container .col {
       width: 30%;
-      margin:0 3%;
+      margin: 0 3%;
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
       height: 100%;
     }
-    .container .col::before{
+
+    .container .col::before {
       width: 10px;
       height: 160px;
       top: -15px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgb(205,154,45);
-      background: linear-gradient(90deg, rgba(205,154,45,1) 0%, rgba(253,187,45,1) 100%);
+      background: rgb(205, 154, 45);
+      background: linear-gradient(90deg, rgba(205, 154, 45, 1) 0%, rgba(253, 187, 45, 1) 100%);
       position: absolute;
       content: '';
       display: block;
@@ -40,13 +49,14 @@
       box-shadow: inset 0 -5px 6px #666;
       border-radius: 5px;
     }
-    .container .col::after{
+
+    .container .col::after {
       width: 100%;
       height: 10px;
       bottom: -10px;
       left: 0%;
-      background: rgb(205,154,45);
-      background: linear-gradient(90deg, rgba(205,154,45,1) 0%, rgba(253,187,45,1) 100%);
+      background: rgb(205, 154, 45);
+      background: linear-gradient(90deg, rgba(205, 154, 45, 1) 0%, rgba(253, 187, 45, 1) 100%);
       position: absolute;
       content: '';
       display: block;
@@ -55,7 +65,7 @@
       border-radius: 5px;
     }
 
-    .container .col div{
+    .container .col div {
       height: 20px;
       transition: opacity .5s;
       display: flex;
@@ -65,58 +75,63 @@
       box-shadow: inset 0 -3px 10px #333
     }
 
-    .container .col div[class^="r"]{
+    .container .col div[class^="r"] {
       opacity: 1;
     }
 
-    .container .col div.r1{
-      background: rgb(205,45,45);
-      background: linear-gradient(150deg, rgba(205,45,45,1) 0%, rgba(255,57,57,1) 100%);
+    .container .col div.r1 {
+      background: rgb(205, 45, 45);
+      background: linear-gradient(150deg, rgba(205, 45, 45, 1) 0%, rgba(255, 57, 57, 1) 100%);
       width: 40%;
     }
 
-    .container .col div.r2{
-      background: rgb(205,158,45);
-      background: linear-gradient(150deg, rgba(205,158,45,1) 0%, rgba(255,196,53,1) 100%);
+    .container .col div.r2 {
+      background: rgb(205, 158, 45);
+      background: linear-gradient(150deg, rgba(205, 158, 45, 1) 0%, rgba(255, 196, 53, 1) 100%);
       width: 50%;
     }
 
-    .container .col div.r3{
-      background: rgb(204,205,45);
-      background: linear-gradient(150deg, rgba(204,205,45,1) 0%, rgba(254,255,55,1) 100%);
+    .container .col div.r3 {
+      background: rgb(204, 205, 45);
+      background: linear-gradient(150deg, rgba(204, 205, 45, 1) 0%, rgba(254, 255, 55, 1) 100%);
       width: 60%;
     }
 
-    .container .col div.r4{
-      background: rgb(99,205,45);
-      background: linear-gradient(150deg, rgba(99,205,45,1) 0%, rgba(123,255,55,1) 100%);
+    .container .col div.r4 {
+      background: rgb(99, 205, 45);
+      background: linear-gradient(150deg, rgba(99, 205, 45, 1) 0%, rgba(123, 255, 55, 1) 100%);
       width: 70%;
     }
 
-    .container .col div.r5{
-      background: rgb(45,126,205);
-      background: linear-gradient(150deg, rgba(45,126,205,1) 0%, rgba(56,157,255,1) 100%);
+    .container .col div.r5 {
+      background: rgb(45, 126, 205);
+      background: linear-gradient(150deg, rgba(45, 126, 205, 1) 0%, rgba(56, 157, 255, 1) 100%);
       width: 80%;
     }
 
-    .container .col div.r6{
-      background: rgb(45,59,205);
-      background: linear-gradient(150deg, rgba(45,59,205,1) 0%, rgba(55,73,255,1) 100%);
+    .container .col div.r6 {
+      background: rgb(45, 59, 205);
+      background: linear-gradient(150deg, rgba(45, 59, 205, 1) 0%, rgba(55, 73, 255, 1) 100%);
       width: 90%;
     }
 
-    .container .col div.r7{
-      background: rgb(120,45,205);
-      background: linear-gradient(150deg, rgba(120,45,205,1) 0%, rgba(149,56,255,1) 100%);
+    .container .col div.r7 {
+      background: rgb(120, 45, 205);
+      background: linear-gradient(150deg, rgba(120, 45, 205, 1) 0%, rgba(149, 56, 255, 1) 100%);
       width: 100%;
     }
-    .container .description{
+
+    .container .description {
       margin-left: 50px;
       margin-top: -20px;
     }
 
-    .btns{display: flex;justify-content: center;}
-    .btns a{
+    .btns {
+      display: flex;
+      justify-content: center;
+    }
+
+    .btns a {
       display: flex;
       line-height: 2;
       color: #fff;
@@ -130,10 +145,12 @@
       margin: 20px 10px;
     }
 
-    p{line-height: 1.6;}
-
+    p {
+      line-height: 1.6;
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="col">
@@ -167,8 +184,12 @@
       <p>Status : Move from pillar No.<span class="from"></span> to pillar No.<span class="to"></span></p>
       <p>　</p>
       <ul>
-        <li><p>Hanoi Tower is a game where a player moves circle from the left pillar to the right pillar.</p></li>
-        <li><p>Only one circle can be moved on each time. And player can't put a bigger circle on a smaller one.</p></li>
+        <li>
+          <p>Hanoi Tower is a game where a player moves circle from the left pillar to the right pillar.</p>
+        </li>
+        <li>
+          <p>Only one circle can be moved on each time. And player can't put a bigger circle on a smaller one.</p>
+        </li>
       </ul>
     </div>
   </div>
@@ -177,41 +198,39 @@
     <a href="javascript:location.reload()">Reload</a>
   </div>
   <script>
+
     let N = 0
-    while(true){
+
+    while (true) {
       N = +prompt('What number of circles do you want to see on this autoplay? \n(Maximum 7)')
-      if(!(1 <= N && N <= 7)) alert("You've got the wrong number~")
+      if (!(1 <= N && N <= 7)) alert("You've got the wrong number~")
       else break
     }
 
-    let pillars = [
-      [],
-      [],
-      []
-    ]
+    let pillars = [[], [], []]
+
     for (let i = 1; i <= N; i++) pillars[0].push(i)
 
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
     const g = async (from, to) => {
-      document.querySelector('span.from').innerText = ''+from
-      document.querySelector('span.to').innerText = ''+to
+      document.querySelector('span.from').innerText = '' + from
+      document.querySelector('span.to').innerText = '' + to
       await delay(500)
       pillars[to - 1].unshift(pillars[from - 1][0])
       pillars[from - 1].shift()
       console.log(JSON.stringify(pillars))
-      document.querySelectorAll('.container .col div').forEach(it=>it.className='')
-      for(let i = 0; i < 3 ; i++){
-        for(let j = 0; j < pillars[i].length ; j++){
-          document.querySelectorAll('.container .col')[i].children[j+7-pillars[i].length].className = `r${pillars[i][j]}`
+      document.querySelectorAll('.container .col div').forEach(it => it.className = '')
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < pillars[i].length; j++) {
+          document.querySelectorAll('.container .col')[i].children[j + 7 - pillars[i].length].className =
+            `r${pillars[i][j]}`
         }
       }
       await delay(500)
     };
 
-    (async()=>await g(1,1))()
-
-    const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
-
-    const h = async(n, from, assist, to) => {
+    const h = async (n, from, assist, to) => {
       await delay()
       if (n === 1) {
         await g(from, to)
@@ -220,12 +239,15 @@
         await g(from, to)
         await h(n - 1, assist, from, to)
       }
-    }
-    (async()=>{
-      await g(1,1)
+    };
+
+    (async () => {
+      await g(1, 1)
       await delay(1000)
       h(N, 1, 2, 3)
     })()
+
   </script>
 </body>
+
 </html>
