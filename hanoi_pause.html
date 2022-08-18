@@ -213,7 +213,7 @@
   </div>
   <div class="btns">
     <a href="./index.html">Auto Play Page</a>
-    <a href="javascript:location.reload()">Reload</a>
+    <a href="javascript:history.go(0)">Reload</a>
   </div>
   <table class="wrap">
     <caption>Status table for developers</caption>
@@ -231,7 +231,7 @@
   <script>
 
     let N = 0
-    
+
     while (true) {
       N = +prompt('What number of circles do you want to see on this autoplay? \n(Maximum 7)')
       if (!(1 <= N && N <= 7)) alert("You've got the wrong number~")
