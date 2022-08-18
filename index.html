@@ -213,7 +213,7 @@
 
     const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-    const g = async (from, to) => {
+    const move = async (from, to) => {
       document.querySelector('span.from').innerText = '' + from
       document.querySelector('span.to').innerText = '' + to
       await delay(500)
@@ -230,21 +230,21 @@
       await delay(500)
     };
 
-    const h = async (n, from, assist, to) => {
+    const recursion = async (n, from, assist, to) => {
       await delay()
       if (n === 1) {
-        await g(from, to)
+        await move(from, to)
       } else {
-        await h(n - 1, from, to, assist)
-        await g(from, to)
-        await h(n - 1, assist, from, to)
+        await recursion(n - 1, from, to, assist)
+        await move(from, to)
+        await recursion(n - 1, assist, from, to)
       }
     };
 
     (async () => {
-      await g(1, 1)
+      await move(1, 1)
       await delay(1000)
-      h(N, 1, 2, 3)
+      recursion(N, 1, 2, 3)
     })()
 
   </script>
