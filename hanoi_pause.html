@@ -229,7 +229,9 @@
     </tbody>
   </table>
   <script>
+
     let N = 0
+    
     while (true) {
       N = +prompt('What number of circles do you want to see on this autoplay? \n(Maximum 7)')
       if (!(1 <= N && N <= 7)) alert("You've got the wrong number~")
@@ -274,7 +276,7 @@
       document.querySelector('.wrap tbody').insertAdjacentHTML('beforeend',
         `<tr><td>End</td><td>${n}</td><td>${from}</td><td>${to}</td></tr>`)
     };
-    
+
     (async () => {
       await g(1, 1)
       await delay(1000)
