@@ -10,4 +10,4 @@ You can watch this on https://sinseiki.github.io/hanoi-tower-autoplay
 
 개발자를 위한 상태표를 함께 제공합니다.
 
-https://sinseiki.github.io/hanoi-tower-autoplay 에서 보실 수 있습니다.
+https://ssgi.kr/hanoi-tower 에서 보실 수 있습니다.
